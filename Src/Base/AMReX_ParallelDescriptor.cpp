@@ -9,6 +9,7 @@
 #include <list>
 #include <chrono>
 
+#include <AMReX_Print.H>
 #include <AMReX_Utility.H>
 #include <AMReX_BLProfiler.H>
 #include <AMReX_BLFort.H>
@@ -304,6 +305,10 @@ ParallelDescriptor::StartParallel (int*    argc,
       m_MaxTag_MPI = m_MaxTag;
     }
     BL_COMM_PROFILE_TAGRANGE(m_MinTag, m_MaxTag);
+
+    // xxxxx
+    m_MaxTag = m_MaxTag_MPI = 4096;
+
 
     BL_MPI_REQUIRE( MPI_Comm_size(CommunicatorAll(), &m_nProcs_all) );
     BL_MPI_REQUIRE( MPI_Comm_rank(CommunicatorAll(), &m_MyId_all) );
