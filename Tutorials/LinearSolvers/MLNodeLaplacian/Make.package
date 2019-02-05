@@ -7,6 +7,3 @@ CEXE_headers += MyTest.H
 
 CEXE_sources += initProb.cpp 
 CEXE_headers += initProb_K.H 
-
-CEXE_sources += initEB.cpp
-CEXE_headers += initEB.H

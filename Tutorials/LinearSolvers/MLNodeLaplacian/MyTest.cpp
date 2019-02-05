@@ -1,5 +1,5 @@
 #include "MyTest.H"
-#include "initEB.H"
+#include "makeEB.H"
 
 #include <AMReX_EB2.H>
 #include <AMReX_EBMultiFabUtil.H>
@@ -77,6 +77,31 @@ MyTest::resizeArrays ()
     rhs.resize(nlevels);
     exact_solution.resize(nlevels);
 }
+
+void 
+MyTest::makeEB ()
+{
+    const int nlevels = geom.size();
+    EBSupport m_eb_support_level = EBSupport::full;
+
+	bool inside = true;
+    Real radius = 0.5;
+    Array<Real, 3> center = {0.5, 0.5, 0.5};
+    EB2::SphereIF sphere(radius, center, inside);
+
+    auto gshop = EB2::makeShop(sphere);
+	EB2::Build(gshop, geom.back(), 0, 30);
+    const EB2::IndexSpace& ebis = EB2::IndexSpace::top();
+
+    for (int ilev = 0; ilev < nlevels; ++ilev)
+    {
+        const EB2::Level& ebis_lev = ebis.getLevel(geom[ilev]);
+        eb_level...?
+        ebfactory[lev].reset(new EBFArrayBoxFactory(
+    }
+
+}
+
 
 void
 MyTest::initData ()
