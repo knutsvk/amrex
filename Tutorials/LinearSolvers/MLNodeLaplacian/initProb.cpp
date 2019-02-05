@@ -1,4 +1,3 @@
-
 #include "MyTest.H"
 #include "initProb_K.H"
 
@@ -24,6 +23,7 @@ MyTest::initProb ()
                 actual_init_poisson(i,j,k,rhsfab,exactfab,prob_lo,dx);
             });
         }
+           sigma[ilev].setVal(1.0);
         solution[ilev].setVal(0.0);
     }
 }
